@@ -42,3 +42,9 @@ function buyCursor(){
     document.getElementById('cursorCost').innerHTML = nextCost  //updates the cursor cost for the user
 }
 
+window.setInterval(function(){
+	
+	cookieClick(cursors)
+	
+}, 1000)
+
