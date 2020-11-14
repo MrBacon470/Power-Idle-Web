@@ -44,7 +44,7 @@ function buyCursor(){
 
 window.setInterval(function(){
 	
-	cookieClick(cursors)
+	powerClick(cursors)
 	
 }, 1000)
 
