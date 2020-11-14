@@ -1,4 +1,4 @@
-var power = 0
+let power = 0
 
 function powerClick(number)
 {
