@@ -33,7 +33,7 @@ function powerClick(number)
 function buyCursor(){
     var cursorCost = Math.floor(10 * Math.pow(1.1,cursors));     //works out the cost of this cursor
     if(power >= cursorCost){                                   //checks that the player can afford the cursor
-        cursors = cursors + 1;                                   //increases number of cursors
+        cursors = cursors++;                                   //increases number of cursors
     	power = power - cursorCost;                          //removes the power spent
         document.getElementById('cursors').innerHTML = cursors;  //updates the number of cursors for the user
         document.getElementById('power').innerHTML = power;  //updates the number of cookies for the user
