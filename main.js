@@ -21,30 +21,64 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-let power = 0
-let cursors = 0
+let power = 10
+var generators = []
+var lastUpdate = Date.now()
 
-function powerClick(number)
-{
-    power = power + number;
-    document.getElementById("click").textContent = "Power: " + power
+for (let i = 0; i < 10; i++) {
+  let generator = {
+    cost: Math.pow(Math.pow(10, i), i) * 10,
+    bought: 0,
+    amount: 0,
+    mult: 1
+  }
+  generators.push(generator)
 }
 
-function buyCursor(){
-    var cursorCost = Math.floor(10 * Math.pow(1.1,cursors))     //works out the cost of this cursor
-    if(power >= cursorCost){                                   //checks that the player can afford the cursor
-        cursors = cursors + 1;                                   //increases number of cursors
-    	power = power - cursorCost;                          //removes the power spent
-        document.getElementById('cursors').textContent = "Cursors: " + cursors //updates the number of cursors for the user
-        document.getElementById("click").textContent = "Power: " + power  //updates the number of cookies for the user
-    }
-    var nextCost = Math.floor(10 * Math.pow(1.1,cursors))       //works out the cost of the next cursor
-    document.getElementById('cursorCost').textContent = "Cursor Cost: "  + cursorCost //updates the cursor cost for the user
+function format(amount) {
+  let powers = Math.floor(Math.log10(amount))
+  let mantissa = amount / Math.pow(10, powers)
+  if (powers < 3) return amount.toFixed(2)
+  return mantissa.toFixed(2) + "e" + powers
 }
 
-window.setInterval(function(){
-	
-	powerClick(cursors)
-	
-}, 1000)
+function buyGenerator(i) {
+  let g = generators[i - 1]
+  if (g.cost > power) return
+  power -= g.cost
+  g.amount += 1
+  g.bought += 1
+  g.mult *= 1.05
+  g.cost *= 1.5
+}
 
+
+function updateGUI() {
+  document.getElementById("currency").textContent = "Power: " + format(power)
+  for (let i = 0; i < 10; i++) {
+    let g = generators[i]
+    document.getElementById("gen" + (i + 1)).innerHTML = "Amount: " + format(g.amount) + "<br>Bought: " + g.bought + "<br>Mult: " + format(g.mult) + "x<br>Cost: " + format(g.cost)
+    if (g.cost > power) document.getElementById("gen" + (i + 1)).classList.add("locked")
+    else document.getElementById("gen" + (i + 1)).classList.remove("locked")
+  }
+}
+
+function productionLoop(diff) {
+  power += generators[0].amount * generators[0].mult * diff
+  for (let i = 1; i < 10; i++) {
+    generators[i - 1].amount += generators[i].amount * generators[i].mult * diff / 5
+  }
+}
+
+function mainLoop() {
+  var diff = (Date.now() - lastUpdate) / 1000
+
+  productionLoop(diff)
+  updateGUI()
+
+  lastUpdate = Date.now()
+}
+
+setInterval(mainLoop, 50)
+
+updateGUI()
