@@ -1,47 +1,25 @@
-<!--MIT License
-
-Copyright (c) 2020 MrBacon470
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.-->
-
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="styles.css">
-  <title>Power Idle Web[Pre-Alpha]</title>
-</head>
-<body>
-  <div id="currency">You have $10</div>
-  <div class="generators-container">
-    <div class="generator" id="gen1" onclick="buyGenerator(1)"></div>
-    <div class="generator" id="gen2" onclick="buyGenerator(2)"></div>
-    <div class="generator" id="gen3" onclick="buyGenerator(3)"></div>
-    <div class="generator" id="gen4" onclick="buyGenerator(4)"></div>
-    <div class="generator" id="gen5" onclick="buyGenerator(5)"></div>
-    <div class="generator" id="gen6" onclick="buyGenerator(6)"></div>
-    <div class="generator" id="gen7" onclick="buyGenerator(7)"></div>
-    <div class="generator" id="gen8" onclick="buyGenerator(8)"></div>
-    <div class="generator" id="gen9" onclick="buyGenerator(9)"></div>
-    <div class="generator" id="gen10" onclick="buyGenerator(10)"></div>
-  </div>
-</body>
-<script src="main.js"></script>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | Power Idle</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Idle-Power-Web.json", {onProgress: UnityProgress});
+    </script>
+  </head>
+  <body>
+    <div class="webgl-content">
+      <div id="unityContainer" style="width: 960px; height: 600px"></div>
+      <div class="footer">
+        <div class="webgl-logo"></div>
+        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+        <div class="title">Power Idle</div>
+      </div>
+    </div>
+  </body>
 </html>

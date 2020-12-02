@@ -1,0 +1,16 @@
+{
+"companyName": "MrBacon470",
+"productName": "Power Idle",
+"productVersion": "2.0",
+"dataUrl": "Idle-Power-Web.data.unityweb",
+"wasmCodeUrl": "Idle-Power-Web.wasm.code.unityweb",
+"wasmFrameworkUrl": "Idle-Power-Web.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.4.14f1"
+}
